@@ -22,22 +22,17 @@ Ryo Dev Extension adalah sebuah extension untuk Visual Studio Code yang membantu
    ```sh
    npm install
    ```
-3. **Install `vsce` untuk mengelola paket extension**:
-
-   ```sh
-   npm install -g vsce
-   ```
-4. **Kompilasi kode TypeScript**:
+3. **Kompilasi kode TypeScript**:
 
    ```sh
    npm run compile
    ```
-5. **Buat Paket `.vsix`**:
+4. **Buat Paket `.vsix`**:
 
    ```sh
    vsce package
    ```
-6. **Install Extension** di VS Code:
+5. **Install Extension** di VS Code:
 
    - Buka VS Code.
    - Tekan `Ctrl + Shift + P` untuk membuka Command Palette.
