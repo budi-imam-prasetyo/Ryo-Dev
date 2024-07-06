@@ -1,7 +1,7 @@
 
-# Dev Serve Extension
+# Ryo Dev Extension
 
-Dev Serve Extension adalah sebuah extension untuk Visual Studio Code yang membantu membuka dua terminal dan menjalankan perintah `npm run dev` dan `npm run serve` secara otomatis.
+Ryo Dev Extension adalah sebuah extension untuk Visual Studio Code yang membantu membuka dua terminal dan menjalankan perintah `npm run dev` dan `npm run serve` secara otomatis.
 
 ## Fitur
 
@@ -14,27 +14,40 @@ Dev Serve Extension adalah sebuah extension untuk Visual Studio Code yang memban
 1. **Clone repositori ini** (atau download source code) ke dalam folder pilihan kamu.
 
    ```sh
-   git clone https://github.com/username/repository-name
-   cd your-extension-folder
+   git clone https://github.com/budi-imam-prasetyo/Ryo-Dev
+   cd Ryo-Dev
    ```
 2. **Install dependencies** dengan menjalankan perintah berikut:
 
    ```sh
    npm install
    ```
-3. **Kompilasi kode TypeScript**:
+3. **Install `vsce` untuk mengelola paket extension**:
+
+   ```sh
+   npm install -g vsce
+   ```
+4. **Kompilasi kode TypeScript**:
 
    ```sh
    npm run compile
    ```
-4. **Jalankan Extension** di VS Code:
+5. **Buat Paket `.vsix`**:
 
-   - Tekan `F5` untuk membuka jendela baru VS Code dengan extension terinstall.
+   ```sh
+   vsce package
+   ```
+6. **Install Extension** di VS Code:
+
+   - Buka VS Code.
+   - Tekan `Ctrl + Shift + P` untuk membuka Command Palette.
+   - Ketik `Extensions: Install from VSIX...` dan pilih opsi yang muncul.
+   - Pilih file `.vsix` yang telah kamu buat.
 
 ## Penggunaan
 
 1. Tekan `Ctrl + Shift + P` untuk membuka Command Palette.
-2. Ketik `Dev Serve` dan pilih perintah yang muncul.
+2. Ketik `Ryo: Dev Serve` dan pilih perintah yang muncul.
 3. Dua terminal akan terbuka:
    - Terminal pertama akan menjalankan `npm run dev`
    - Terminal kedua akan menjalankan `npm run serve`
@@ -60,4 +73,4 @@ Jika ingin berkontribusi atau mengembangkan extension ini lebih lanjut:
 
 ## Lisensi
 
-Extension ini dilisensikan di bawah [MIT License](https://github.com/username/repository-name/blob/main/LICENSE).
+Extension ini dilisensikan di bawah [MIT License](https://github.com/budi-imam-prasetyo/Ryo-Dev/blob/main/LICENSE).
