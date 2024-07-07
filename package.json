@@ -2,7 +2,7 @@
   "name": "ryodev",
   "displayName": "RyoDev",
   "description": "The extension to run \"npm run dev\" and \"npm run serve\"",
-  "version": "0.0.21",
+  "version": "0.0.3",
   "publisher": "Budi Imam Prasetyo",
   "engines": {
     "vscode": "^1.89.1"
@@ -11,24 +11,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.ryoDevServe",
-    "onCommand:extension.stopRyoDevServe",
-    "onStartupFinished"
+    "onCommand:extension.toggleRyoDevServe"
   ],
   "main": "./out/extension.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/budi-imam-prasetyo/RyoDev"
   },
+  "icon": "images/RyoDev.png",
   "contributes": {
     "commands": [
       {
-        "command": "extension.ryoDevServe",
-        "title": "Ryo: Dev Serve"
-      },
-      {
-        "command": "extension.stopRyoDevServe",
-        "title": "Ryo: Stop Dev Serve"
+        "command": "extension.toggleRyoDevServe",
+        "title": "Ryo: Toggle Dev Serve"
       }
     ]
   },
@@ -38,8 +33,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test",
-    "serve": "php artisan serve"
+    "test": "vscode-test"
   },
   "devDependencies": {
     "@types/vscode": "^1.89.1",

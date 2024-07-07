@@ -1,77 +1,66 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
 
-let terminalDev: vscode.Terminal | undefined;
-let terminalServe: vscode.Terminal | undefined;
+let terminal1: vscode.Terminal | undefined;
+let terminal2: vscode.Terminal | undefined;
+let isRunning = false;
 
 export function activate(context: vscode.ExtensionContext) {
-    let startDisposable = vscode.commands.registerCommand('extension.ryoDevServe', () => {
-        if (!terminalDev) {
-            terminalDev = vscode.window.createTerminal({ name: "Dev Terminal" });
-        }
-        terminalDev.sendText("npm run dev");
+    const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+    statusBarItem.text = "$(play) Start Ryo Dev";
+    statusBarItem.command = "extension.toggleRyoDevServe";
+    statusBarItem.show();
+    context.subscriptions.push(statusBarItem);
 
-        if (!terminalServe) {
-            terminalServe = vscode.window.createTerminal({ name: "Serve Terminal" });
+    let disposableToggle = vscode.commands.registerCommand('extension.toggleRyoDevServe', () => {
+        if (isRunning) {
+            stopRyoDevServe();
+            statusBarItem.text = "$(play) Start Ryo Dev";
+        } else {
+            startRyoDevServe();
+            statusBarItem.text = "$(stop) Stop Ryo Dev";
         }
-        terminalServe.sendText("npm run serve");
+        isRunning = !isRunning;
+    });
 
-        terminalDev.show();
-        terminalServe.show();
-    });
-    
-    let stopDisposable = vscode.commands.registerCommand('extension.stopRyoDevServe', () => {
-        if (terminalDev) {
-            terminalDev.sendText('\x03');
-        }
-        if (terminalServe) {
-            terminalServe.sendText('\x03');
-        }
-    });
-    
-    context.subscriptions.push(startDisposable);
-    context.subscriptions.push(stopDisposable);
-    
-    updatePackageJsonWithServeScript();
+    context.subscriptions.push(disposableToggle);
+}
+
+function startRyoDevServe() {
+    if (!terminal1) {
+        terminal1 = vscode.window.createTerminal(`Ryo: Dev`);
+        terminal1.sendText('npm run dev');
+        terminal1.show();
+    }
+
+    if (!terminal2) {
+        terminal2 = vscode.window.createTerminal(`Ryo: Serve`);
+        terminal2.sendText('npm run serve');
+        terminal2.show();
+    }
+
+    vscode.window.showInformationMessage('Ryo: Dev Serve started');
+}
+
+function stopRyoDevServe() {
+    if (terminal1) {
+        terminal1.dispose();
+        terminal1 = undefined;
+    }
+
+    if (terminal2) {
+        terminal2.dispose();
+        terminal2 = undefined;
+    }
+
+    vscode.window.showInformationMessage('Ryo: Dev Serve stopped');
 }
 
 export function deactivate() {
-    if (terminalDev) {
-        terminalDev.dispose();
+    if (terminal1) {
+        terminal1.dispose();
     }
-    if (terminalServe) {
-        terminalServe.dispose();
-    }
-}
 
-function updatePackageJsonWithServeScript() {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
-    if (workspaceFolders) {
-        const packageJsonPath = path.join(workspaceFolders[0].uri.fsPath, 'package.json');
-        fs.readFile(packageJsonPath, 'utf8', (err, data) => {
-            if (err) {
-                vscode.window.showErrorMessage('Error reading package.json');
-                return;
-            }
-            try {
-                const packageJson = JSON.parse(data);
-                if (!packageJson.scripts) {
-                    packageJson.scripts = {};
-                }
-                if (!packageJson.scripts.serve) {
-                    packageJson.scripts.serve = "php artisan serve";
-                    fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8', (err) => {
-                        if (err) {
-                            vscode.window.showErrorMessage('Error writing to package.json');
-                            return;
-                        }
-                        vscode.window.showInformationMessage('Added "serve": "php artisan serve" to package.json');
-                    });
-                }
-            } catch (parseError) {
-                vscode.window.showErrorMessage('Error parsing package.json');
-            }
-        });
+    if (terminal2) {
+        terminal2.dispose();
     }
 }
