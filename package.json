@@ -2,7 +2,8 @@
   "name": "ryodev",
   "displayName": "RyoDev",
   "description": "The extension to run \"npm run dev\" and \"npm run serve\"",
-  "version": "0.0.2",
+  "version": "0.0.21",
+  "publisher": "Budi Imam Prasetyo",
   "engines": {
     "vscode": "^1.89.1"
   },

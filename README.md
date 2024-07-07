@@ -2,6 +2,10 @@
 
 Ryo Dev Extension adalah sebuah extension untuk Visual Studio Code yang membantu membuka dua terminal dan menjalankan perintah `npm run dev` dan `npm run serve` secara otomatis.
 
+## Publisher
+
+Published by Budi Imam Prasetyo
+
 ## Fitur
 
 - Membuka dua terminal di VS Code
@@ -22,17 +26,17 @@ Ryo Dev Extension adalah sebuah extension untuk Visual Studio Code yang membantu
    ```sh
    npm install
    ```
-4. **Kompilasi kode TypeScript**:
+3. **Kompilasi kode TypeScript**:
 
    ```sh
    npm run compile
    ```
-5. **Buat Paket `.vsix`**:
+4. **Buat Paket `.vsix`**:
 
    ```sh
    vsce package
    ```
-6. **Install Extension** di VS Code:
+5. **Install Extension** di VS Code:
 
    - Buka VS Code.
    - Tekan `Ctrl + Shift + P` untuk membuka Command Palette.
