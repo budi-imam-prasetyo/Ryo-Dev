@@ -1,9 +1,9 @@
 {
   "name": "ryodev",
-  "displayName": "RyoDev",
+  "displayName": "Ryo-Dev",
   "description": "The extension to run \"npm run dev\" and \"npm run serve\"",
-  "version": "0.0.52",
-  "publisher": "Budi Imam Prasetyo",
+  "version": "0.0.54",
+  "publisher": "budiimamprsty",
   "engines": {
     "vscode": "^1.89.1"
   },
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "https://github.com/budi-imam-prasetyo/RyoDev"
   },
-  "icon": "images/RyoDev.png",
+  "icon": "images/icon.png",
   "contributes": {
     "commands": [
       {
