@@ -1,17 +1,26 @@
 {
   "name": "ryodev",
   "displayName": "Ryo-Dev",
-  "description": "The extension to run \"npm run dev\" and \"npm run serve\"",
-  "version": "0.0.54",
+  "description": "Modern development server manager with multi-terminal support, presets, and flexible configuration",
+  "version": "1.0.0",
   "publisher": "budiimamprsty",
   "engines": {
-    "vscode": "^1.89.1"
+    "vscode": "^1.106.1"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
+  "keywords": [
+    "terminal",
+    "development",
+    "server",
+    "laravel",
+    "react",
+    "vue",
+    "nextjs",
+    "fullstack"
   ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "repository": {
     "type": "git",
@@ -22,7 +31,88 @@
     "commands": [
       {
         "command": "extension.toggleRyoDevServe",
-        "title": "Ryo: Toggle Dev Serve"
+        "title": "Ryo: Toggle Dev Server",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ryodev.start",
+        "title": "Ryo: Start Development",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ryodev.stop",
+        "title": "Ryo: Stop All Terminals",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "ryodev.createConfig",
+        "title": "Ryo: Create Configuration",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "ryodev.editConfig",
+        "title": "Ryo: Edit Configuration",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "ryodev.showTerminals",
+        "title": "Ryo: Show Active Terminals",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "ryodev.restartTerminal",
+        "title": "Ryo: Restart Terminal",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "ryodev.quickStart",
+        "title": "Ryo: Quick Start",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "ryodev.presets",
+        "title": "Ryo: Choose Preset",
+        "icon": "$(list-unordered)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "extension.toggleRyoDevServe"
+        },
+        {
+          "command": "ryodev.start"
+        },
+        {
+          "command": "ryodev.stop"
+        },
+        {
+          "command": "ryodev.createConfig"
+        },
+        {
+          "command": "ryodev.editConfig"
+        },
+        {
+          "command": "ryodev.showTerminals"
+        },
+        {
+          "command": "ryodev.restartTerminal"
+        },
+        {
+          "command": "ryodev.quickStart"
+        },
+        {
+          "command": "ryodev.presets"
+        }
+      ]
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "ryosetup.json",
+          ".ryosetup.json"
+        ],
+        "url": "./schemas/ryosetup.schema.json"
       }
     ]
   },
@@ -35,14 +125,14 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.89.1",
-    "@types/mocha": "^10.0.7",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.11.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0"
+    "@types/vscode": "^1.106.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
   }
 }

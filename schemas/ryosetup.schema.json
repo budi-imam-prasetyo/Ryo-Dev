@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ryo-Dev Configuration",
+  "description": "Configuration file for Ryo-Dev extension",
+  "type": "object",
+  "required": ["name", "terminals"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Project name displayed in notifications"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional project description"
+    },
+    "version": {
+      "type": "string",
+      "description": "Configuration version",
+      "default": "1.0"
+    },
+    "environment": {
+      "type": "object",
+      "description": "Environment variables to set for all terminals",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "terminals": {
+      "type": "array",
+      "description": "List of terminal configurations",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "command"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Terminal display name"
+          },
+          "directory": {
+            "type": "string",
+            "description": "Working directory (relative to workspace root)",
+            "default": "."
+          },
+          "command": {
+            "type": "string",
+            "description": "Command to execute in the terminal"
+          },
+          "color": {
+            "type": "string",
+            "description": "Terminal tab color",
+            "enum": [
+              "terminal.ansiRed",
+              "terminal.ansiGreen",
+              "terminal.ansiYellow",
+              "terminal.ansiBlue",
+              "terminal.ansiMagenta",
+              "terminal.ansiCyan",
+              "terminal.ansiWhite"
+            ]
+          },
+          "icon": {
+            "type": "string",
+            "description": "Terminal icon (VS Code Codicon name)",
+            "examples": ["terminal", "server", "browser", "database", "globe", "package"]
+          },
+          "autoStart": {
+            "type": "boolean",
+            "description": "Whether to start this terminal automatically",
+            "default": true
+          },
+          "delay": {
+            "type": "number",
+            "description": "Delay in milliseconds before running the command",
+            "default": 0,
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "name": "Laravel Fullstack",
+      "description": "Laravel with Vite frontend",
+      "version": "1.0",
+      "terminals": [
+        {
+          "name": "Frontend",
+          "directory": ".",
+          "command": "npm run dev",
+          "color": "terminal.ansiGreen",
+          "icon": "browser"
+        },
+        {
+          "name": "Backend",
+          "directory": ".",
+          "command": "php artisan serve",
+          "color": "terminal.ansiBlue",
+          "icon": "server"
+        }
+      ]
+    },
+    {
+      "name": "Monorepo Setup",
+      "description": "Separate frontend and backend",
+      "terminals": [
+        {
+          "name": "Frontend",
+          "directory": "./frontend",
+          "command": "npm run dev",
+          "color": "terminal.ansiCyan"
+        },
+        {
+          "name": "Backend",
+          "directory": "./backend",
+          "command": "npm run dev",
+          "color": "terminal.ansiYellow"
+        },
+        {
+          "name": "Database",
+          "directory": ".",
+          "command": "docker-compose up db",
+          "autoStart": false
+        }
+      ]
+    }
+  ]
+}

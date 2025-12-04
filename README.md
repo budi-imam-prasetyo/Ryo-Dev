@@ -1,172 +1,419 @@
-# Ryo Dev VSCode Extension
+<div align="center">
 
-## Overview
+# 🚀 Ryo-Dev
 
-Ryo Dev adalah VSCode extension yang memudahkan pengembangan aplikasi menggunakan framework JavaScript (seperti Vue, React dan lainnya) dengan Laravel. Extension ini memungkinkan Anda menjalankan server development frontend dan backend secara bersamaan dengan satu klik.
+### Modern Development Server Manager for VS Code
 
-## Features
+[![VS Code](https://img.shields.io/badge/VS%20Code-1.60+-blue.svg)](https://code.visualstudio.com/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/budi-imam-prasetyo/RyoDev)
 
-- 🚀 Quick start untuk frontend berbasis framework JavaScript dan Laravel backend
-- 💻 Menjalankan dua terminal secara otomatis dengan custom command
-- 🔄 Toggle start/stop dengan mudah melalui status bar
-- ⚡ Mendukung dua mode: Dev Serve dan Javascript Laravel
-- 📁 Konfigurasi folder frontend dan backend yang fleksibel melalui file `ryosetup`
+**Run multiple development servers with one click!**
 
-## Requirements
+*Perfect for Laravel, React, Vue, Next.js, and more*
 
-- Visual Studio Code v1.60.0 atau lebih tinggi
-- Node.js dan npm terinstall
-- PHP dan Composer terinstall
-- Project berbasis framework JavaScript
-- Project Laravel
+[Features](#-features) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Configuration](#-configuration) • [Presets](#-presets)
 
-## Installation
+</div>
 
-### Dari VSCode Marketplace
+---
 
-1. Buka VSCode
-2. Klik icon Extensions di sidebar (atau tekan `Ctrl+Shift+X`)
-3. Cari "Ryo Dev"
-4. Klik Install
+## 🎯 Overview
 
-### Manual Installation
+Ryo-Dev is a powerful VS Code extension that simplifies full-stack development by managing multiple development servers simultaneously. Whether you're building with Laravel + Vue, React + Express, or any modern stack, start everything with a single click.
 
-1. Download file extension `.vsix`
-2. Buka VSCode
-3. Tekan `Ctrl+Shift+P` dan ketik "Install from VSIX"
-4. Pilih file `.vsix` yang sudah didownload
-5. Restart VSCode
+### Why Ryo-Dev?
 
-## Setup Project
+- ⚡ **Instant Setup** - One click to start all your servers
+- 🎨 **Visual Management** - Color-coded terminals for easy tracking
+- 📋 **Smart Presets** - Pre-configured templates for popular stacks
+- 🔧 **Flexible** - Customize everything via JSON configuration
+- 🚀 **Productive** - Save time, focus on coding
 
-### 1. Struktur Folder
+---
 
-Pastikan struktur folder project Anda seperti ini:
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🖥️ **Multi-Terminal Management**
+Run unlimited development servers simultaneously with color-coded tabs for easy identification.
+
+### 📋 **Smart Presets**
+Built-in templates for Laravel, Next.js, React, Vue, MERN stack, microservices, and more.
+
+### 🔧 **Flexible Configuration**
+JSON-based config with auto-complete support and validation.
+
+</td>
+<td width="50%">
+
+### 🎯 **One-Click Start**
+Start all servers instantly from the status bar or command palette.
+
+### 🔄 **Auto-Detection**
+Automatically detects your project structure and suggests optimal setup.
+
+### ⚡ **Quick Access**
+Status bar integration for instant control without interrupting your flow.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📦 Installation
+
+### Method 1: VS Code Marketplace (Recommended)
+
+1. Open VS Code
+2. Press `Ctrl+Shift+X` to open Extensions
+3. Search for **"Ryo-Dev"**
+4. Click **Install**
+
+### Method 2: Manual Installation
+
+```bash
+# Download the .vsix file, then in VS Code:
+# Press Ctrl+Shift+P → Type "Install from VSIX" → Select the file
+```
+
+---
+
+## 🚀 Quick Start
+
+### Step 1: Prepare Your Project
+
+Ensure your project structure follows this pattern:
 
 ```
 your-project/
-  ├── frontend/         # Folder framework JavaScript
-  │   ├── package.json
-  │   └── ...
-  ├── backend/          # Folder Laravel project
-  │   ├── artisan
-  │   └── ...
-  └── ryosetup          # File konfigurasi
+├── frontend/           # Your JavaScript framework
+│   ├── package.json
+│   └── ...
+├── backend/            # Your Laravel/Express/Django backend
+│   ├── artisan
+│   └── ...
+└── ryosetup.json       # Configuration file (auto-created)
 ```
 
-### 2. Konfigurasi ryosetup
+### Step 2: Start Development
 
-1. Buat file bernama `ryosetup` (tanpa extension) di root folder project
-2. Isi file dengan path folder frontend, backend, dan perintah custom (relatif terhadap root project):
+**Option A: Status Bar** (Fastest)
 
-```
-frontend
-backend
-npm run dev
-php artisan serve
-```
+Click **"▶ Ryo Dev"** in the status bar → Choose:
+- **Quick Start** - Auto-detect and run
+- **From ryosetup.json** - Use your config
+- **Choose Preset** - Select template
 
-Note:
+**Option B: Command Palette**
 
-- Baris 1: path ke folder frontend
-- Baris 2: path ke folder backend
-- Baris 3: perintah untuk menjalankan frontend
-- Baris 4: perintah untuk menjalankan backend
+Press `Ctrl+Shift+P` and type:
+- `Ryo: Quick Start`
+- `Ryo: Start Development`
+- `Ryo: Choose Preset`
 
-### 3. Persiapan Project
+### Step 3: Install Dependencies
 
-#### Frontend (Framework JS)
-
-1. Masuk ke folder frontend:
-
+**Frontend:**
 ```bash
 cd frontend
-```
-
-2. Install dependencies:
-
-```bash
 npm install
 ```
 
-#### Backend (Laravel)
-
-1. Masuk ke folder backend:
-
+**Backend (Laravel):**
 ```bash
 cd backend
-```
-
-2. Install dependencies:
-
-```bash
 composer install
-```
-
-3. Setup environment:
-
-```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-## Usage
+---
 
-### 1. Starting the Development Server
+## 📝 Configuration
 
-1. Buka project Anda di VSCode
-2. Klik tombol "Start Ryo Dev" di status bar (pojok kanan bawah)
-3. Pilih mode yang diinginkan:
-   - **Ryo: Dev Serve** - untuk project sederhana
-   - **Ryo: Javascript Laravel** - untuk project yang menggunakan struktur frontend/backend terpisah
+### Creating ryosetup.json
 
-### 2. Stopping the Server
+Create a `ryosetup.json` file in your project root:
 
-- Klik tombol "Stop Ryo Dev" di status bar
-- Atau tutup terminal yang terbuka secara manual
-
-## Mode Development
-
-### Ryo: Dev Serve
-
-Mode ini cocok untuk:
-
-- Project sederhana tanpa pemisahan frontend/backend
-- Development cepat dan prototype
-- Project yang menggunakan struktur monolith
-
-### Ryo: Javascript Laravel
-
-Mode ini cocok untuk:
-
-- Project dengan frontend dan backend terpisah
-- Arsitektur microservice
-- Project skala besar dengan tim terpisah untuk frontend dan backend
-
-## Troubleshooting
-
-### Frontend/Backend Folder Not Found
-
-1. Pastikan file `ryosetup` ada di root project
-2. Periksa isi file `ryosetup`:
-   - Harus berisi empat baris
-   - Path dan command harus relatif terhadap root project
-   - Tidak boleh ada spasi di awal atau akhir baris
-
-### Command Error (npm run dev atau php artisan serve)
-
-1. Pastikan command di `ryosetup` sesuai dengan kebutuhan project
-2. Periksa apakah dependencies frontend/backend sudah terinstall
-3. Pastikan Node.js, PHP, dan Composer terinstall dengan benar
-
-## Contributing
-
-Jika Anda menemukan bug atau ingin menambahkan fitur, silakan buat issue atau pull request di repository GitHub kami.
-
-## License
-
-MIT License - lihat file LICENSE untuk detail lengkap.
-
+```json
+{
+  "name": "My Full-Stack App",
+  "description": "React frontend with Laravel backend",
+  "version": "1.0",
+  "terminals": [
+    {
+      "name": "Frontend Dev Server",
+      "directory": "./frontend",
+      "command": "npm run dev",
+      "color": "terminal.ansiGreen",
+      "icon": "browser"
+    },
+    {
+      "name": "Laravel API",
+      "directory": "./backend",
+      "command": "php artisan serve",
+      "color": "terminal.ansiBlue",
+      "icon": "server"
+    },
+    {
+      "name": "Database",
+      "directory": ".",
+      "command": "docker-compose up db",
+      "autoStart": false
+    }
+  ]
+}
 ```
 
+### Configuration Options
+
+| Property | Type | Required | Description | Default |
+|----------|------|----------|-------------|---------|
+| `name` | string | ✅ | Terminal display name | - |
+| `directory` | string | ❌ | Working directory | `.` |
+| `command` | string | ✅ | Command to execute | - |
+| `color` | string | ❌ | Terminal tab color | - |
+| `icon` | string | ❌ | VS Code icon | - |
+| `autoStart` | boolean | ❌ | Auto-start on run | `true` |
+| `delay` | number | ❌ | Startup delay (ms) | `0` |
+
+### Available Colors
+
+| Color | Badge | Usage |
+|-------|-------|-------|
+| `terminal.ansiRed` | 🔴 | Errors, critical services |
+| `terminal.ansiGreen` | 🟢 | Frontend, success |
+| `terminal.ansiYellow` | 🟡 | Warnings, build tools |
+| `terminal.ansiBlue` | 🔵 | Backend, API |
+| `terminal.ansiMagenta` | 🟣 | Database, storage |
+| `terminal.ansiCyan` | 🔵 | Cache, queue workers |
+
+### Available Icons
+
+`terminal` • `server` • `browser` • `database` • `globe` • `package` • `key` • `person` • `output` • `gear`
+
+---
+
+## 🎨 Presets
+
+Choose from built-in templates for instant setup:
+
+### Laravel Fullstack
+Laravel with Vite/Mix frontend
 ```
+✓ npm run dev
+✓ php artisan serve
+```
+
+### React + Laravel
+React SPA with Laravel API
+```
+✓ npm start (React)
+✓ php artisan serve (Laravel)
+```
+
+### Next.js + Express
+Next.js frontend with Express backend
+```
+✓ npm run dev (Next.js)
+✓ npm run dev (Express)
+```
+
+### Vue + Django
+Vue frontend with Django REST API
+```
+✓ npm run serve (Vue)
+✓ python manage.py runserver (Django)
+```
+
+### MERN Stack
+MongoDB, Express, React, Node.js
+```
+✓ MongoDB server
+✓ Express API
+✓ React frontend
+```
+
+### Microservices
+Multiple service architecture
+```
+✓ API Gateway
+✓ Auth Service
+✓ User Service
+✓ Main API
+```
+
+---
+
+## ⌨️ Commands
+
+| Command | Description |
+|---------|-------------|
+| `Ryo: Toggle Dev Server` | Start/Stop all servers |
+| `Ryo: Start Development` | Show start menu |
+| `Ryo: Quick Start` | Fast start with auto-detect |
+| `Ryo: Choose Preset` | Browse preset templates |
+| `Ryo: Create Configuration` | Interactive setup wizard |
+| `Ryo: Edit Configuration` | Open ryosetup.json |
+| `Ryo: Stop All Terminals` | Stop all running terminals |
+| `Ryo: Show Active Terminals` | Manage running terminals |
+| `Ryo: Restart Terminal` | Restart specific terminal |
+
+---
+
+## 📂 Example Structures
+
+### Laravel Fullstack (Monolith)
+
+```
+my-project/
+├── ryosetup.json
+├── app/
+├── resources/
+│   ├── js/
+│   └── views/
+├── package.json
+└── artisan
+```
+
+### Separated Frontend/Backend
+
+```
+my-project/
+├── ryosetup.json
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+└── backend/
+    ├── app/
+    ├── routes/
+    └── artisan
+```
+
+### Microservices Architecture
+
+```
+my-project/
+├── ryosetup.json
+├── gateway/
+│   └── package.json
+├── auth-service/
+│   └── package.json
+├── user-service/
+│   └── package.json
+└── api-service/
+    └── package.json
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### ❌ "Folder not found" Error
+
+**Solution:**
+1. Verify `ryosetup.json` exists in project root
+2. Check paths are relative to root: `./frontend`, `./backend`
+3. Ensure no leading/trailing spaces in paths
+
+### ❌ Command Execution Failed
+
+**Solution:**
+1. Verify dependencies are installed:
+   - Frontend: `npm install`
+   - Backend: `composer install`
+2. Check Node.js, PHP, and Composer are installed:
+   ```bash
+   node --version
+   php --version
+   composer --version
+   ```
+3. Test commands manually in terminal
+
+### ❌ Port Already in Use
+
+**Solution:**
+1. Check for running processes on default ports
+2. Modify commands in `ryosetup.json`:
+   ```json
+   "command": "php artisan serve --port=8001"
+   ```
+
+---
+
+## 🔄 Migration Guide
+
+### From Legacy ryosetup Format
+
+Old format (plain text):
+```
+./frontend
+./backend
+npm run dev
+php artisan serve
+```
+
+New format (JSON):
+```json
+{
+  "terminals": [
+    {
+      "name": "Frontend",
+      "directory": "./frontend",
+      "command": "npm run dev"
+    },
+    {
+      "name": "Backend",
+      "directory": "./backend",
+      "command": "php artisan serve"
+    }
+  ]
+}
+```
+
+> **Note:** Legacy format still works, but JSON is recommended for advanced features.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Report Bugs** - Open an issue with details
+2. **Suggest Features** - Share your ideas
+3. **Submit PRs** - Fix bugs or add features
+4. **Improve Docs** - Help others understand
+
+[Contributing Guidelines](CONTRIBUTING.md)
+
+---
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Budi Imam Prasetyo**
+
+[![GitHub](https://img.shields.io/badge/GitHub-@budi--imam--prasetyo-181717?logo=github)](https://github.com/budi-imam-prasetyo)
+
+---
+
+<div align="center">
+
+### Made with ❤️ for developers who value efficiency
+
+**[⬆ Back to Top](#-ryo-dev)**
+
+*Star ⭐ this repo if you find it helpful!*
+
+</div>
